@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3002;
 
-app.get('/date', (req, res) => {
+app.get('/', (req, res) => {
   const today = new Date().toISOString().split('T')[0];
   res.send({ date: today });
 });

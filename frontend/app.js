@@ -5,7 +5,7 @@ const port = 3000;
 
 app.use(express.json());
 
-app.post('/greet', async (req, res) => {
+app.post('/', async (req, res) => {
   const { username } = req.body;
   try {
     const [dateRes, timeRes, countryRes] = await Promise.all([
