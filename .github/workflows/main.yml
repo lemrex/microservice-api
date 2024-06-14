@@ -22,23 +22,23 @@ jobs:
 
     - name: Build and push Country image
       run: |
-        docker build -t swr.af-south-1.myhuaweicloud.com/ralf/country:${{ github.sha }} country
-        docker push swr.af-south-1.myhuaweicloud.com/ralf/country:${{ github.sha }}
+        docker build -t swr.ap-southeast-3.myhuaweicloud.com/ralf/country:${{ github.sha }} country
+        docker push swr.ap-southeast-3.myhuaweicloud.com/ralf/country:${{ github.sha }}
 
     - name: Build and push Date image
       run: |
-        docker build -t swr.af-south-1.myhuaweicloud.com/ralf/date:${{ github.sha }} date
-        docker push swr.af-south-1.myhuaweicloud.com/ralf/date:${{ github.sha }}
+        docker build -t swr.ap-southeast-3.myhuaweicloud.com/ralf/date:${{ github.sha }} date
+        docker push swr.ap-southeast-3.myhuaweicloud.com/ralf/date:${{ github.sha }}
 
     - name: Build and push Time image
       run: |
-        docker build -t swr.af-south-1.myhuaweicloud.com/ralf/time:${{ github.sha }} time
-        docker push swr.af-south-1.myhuaweicloud.com/ralf/time:${{ github.sha }}
+        docker build -t swr.ap-southeast-3.myhuaweicloud.com/ralf/time:${{ github.sha }} time
+        docker push swr.ap-southeast-3.myhuaweicloud.com/ralf/time:${{ github.sha }}
 
     - name: Build and push Frontend image
       run: |
-        docker build -t swr.af-south-1.myhuaweicloud.com/ralf/frontend:${{ github.sha }} frontend
-        docker push swr.af-south-1.myhuaweicloud.com/ralf/frontend:${{ github.sha }}
+        docker build -t swr.ap-southeast-3.myhuaweicloud.com/ralf/frontend:${{ github.sha }} frontend
+        docker push swr.ap-southeast-3.myhuaweicloud.com/ralf/frontend:${{ github.sha }}
 
     - name: Get CCE Cluster Credentials
       uses: huaweicloud/cce-credential-action@v1.0.2
@@ -52,22 +52,22 @@ jobs:
 
     - name: Deploy Random Country API
       run: |
-        sed -i "s@swr.af-south-1.myhuaweicloud.com/ralf/date:[a-z0-9]*@swr.af-south-1.myhuaweicloud.com/ralf/date:${{ github.sha }}@g" country/manifest/deployment.yaml
+        sed -i "s@swr.ap-southeast-3.myhuaweicloud.com/ralf/date:[a-z0-9]*@swr.ap-southeast-3.myhuaweicloud.com/ralf/date:${{ github.sha }}@g" country/manifest/deployment.yaml
         kubectl apply -f country/manifest/
 
     - name: Deploy Today's Date API
       run: |
-        sed -i "s@swr.af-south-1.myhuaweicloud.com/ralf/date:[a-z0-9]*@swr.af-south-1.myhuaweicloud.com/ralf/date:${{ github.sha }}@g" date/manifest/deployment.yaml  
+        sed -i "s@swr.ap-southeast-3.myhuaweicloud.com/ralf/date:[a-z0-9]*@swr.ap-southeast-3.myhuaweicloud.com/ralf/date:${{ github.sha }}@g" date/manifest/deployment.yaml  
         kubectl apply -f date/manifest/
 
     - name: Deploy Current Time API
       run: |
-        sed -i "s@swr.af-south-1.myhuaweicloud.com/ralf/date:[a-z0-9]*@swr.af-south-1.myhuaweicloud.com/ralf/date:${{ github.sha }}@g" time/manifest/deployment.yaml
+        sed -i "s@swr.ap-southeast-3.myhuaweicloud.com/ralf/date:[a-z0-9]*@swr.ap-southeast-3.myhuaweicloud.com/ralf/date:${{ github.sha }}@g" time/manifest/deployment.yaml
         kubectl apply -f time/manifest/
 
     - name: Deploy Frontend
       run: |
-        sed -i "s@swr.af-south-1.myhuaweicloud.com/ralf/date:[a-z0-9]*@swr.af-south-1.myhuaweicloud.com/ralf/date:${{ github.sha }}@g" frontend/manifest/deployment.yaml
+        sed -i "s@swr.ap-southeast-3.myhuaweicloud.com/ralf/date:[a-z0-9]*@swr.ap-southeast-3.myhuaweicloud.com/ralf/date:${{ github.sha }}@g" frontend/manifest/deployment.yaml
         kubectl apply -f frontend/manifest/
 
 

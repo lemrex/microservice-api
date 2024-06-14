@@ -16,7 +16,7 @@ spec:
         - name: default-secret
       containers:
       - name: country
-        image: swr.af-south-1.myhuaweicloud.com/ralf/country:96e07fc4dbb5f89ca5103431e64f88e1a1d5d5bc
+        image: swr.ap-southeast-3.myhuaweicloud.com/ralf/country:96e07fc4dbb5f89ca5103431e64f88e1a1d5d5bc
         ports:
         - containerPort: 3001
         resources:
