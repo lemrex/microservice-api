@@ -18,7 +18,7 @@ jobs:
       with:
         access-key-id: ${{ secrets.ACCESSKEY }}
         access-key-secret: ${{ secrets.SECRETACCESSKEY }}
-        region: af-south-1      
+        region: ap-southeast-3     
 
     - name: Build and push Country image
       run: |
