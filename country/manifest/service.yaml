@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: country
+spec:
+  selector:
+    app: country
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3001
