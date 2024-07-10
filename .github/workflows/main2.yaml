@@ -37,7 +37,7 @@ jobs:
       run: |
         docker build -t swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:${{ github.sha }} country
         docker push swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:${{ github.sha }}
-        echo "::set-output name=image::swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:${{ github.sha }}
+        echo "::set-output name=image::swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:${{ github.sha }}"
 
 
         
