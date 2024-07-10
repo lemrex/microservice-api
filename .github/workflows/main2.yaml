@@ -50,5 +50,6 @@ jobs:
         with:
           namespace: 'dev-namespace-ralf'
           deployment: 'from-github'
-          image: ${{ needs.build.outputs.image }}
+          image: 'swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:615eae68438c81715d08da8442799ab69a7175ec'
+          # image: ${{ needs.build.outputs.image }}
           manifest: country/manifest/
