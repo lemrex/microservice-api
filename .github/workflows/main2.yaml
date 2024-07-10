@@ -5,6 +5,10 @@ on:
     branches:
       - main
 
+env:
+  REGION_ID: ap-southeast-3                  
+  PROJECT_ID:  04eb02332a0025b92f00c0005dd31f24    
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -41,7 +45,8 @@ jobs:
             access_key_id: ${{ secrets.ACCESSKEY }} 
             secret_access_key: ${{ secrets.SECRETACCESSKEY }}
             region: 'ap-southeast-3'
-            #project_id: '04eb02332a0025b92f00c0005dd31f24'
+            project_id: '04eb02332a0025b92f00c0005dd31f24'
+           
 
 
       - name: Deploy to CCI
