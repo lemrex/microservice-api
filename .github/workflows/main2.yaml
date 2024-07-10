@@ -1,0 +1,50 @@
+name: CI/CD to Huawei SWR and CCE
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+
+    - name: Authenticate to Huawei Cloud
+      uses: huaweicloud/auth-action@v1.1.0
+      with: 
+          access_key_id: ${{ secrets.ACCESSKEY }} 
+          secret_access_key: ${{ secrets.SECRETACCESSKEY }}
+          region: 'ap-southeast-3'
+          project_id: '04eb02332a0025b92f00c0005dd31f24'
+
+    - name: Log in to Huawei Cloud SWR
+      uses: huaweicloud/swr-login@v2.1.0
+      with:
+        access-key-id: ${{ secrets.ACCESSKEY }}
+        access-key-secret: ${{ secrets.SECRETACCESSKEY }}
+        region: ap-southeast-3     
+
+    - name: Build and push Cuntry image
+      run: |
+        docker build -t swr.ap-southeast-3.myhuaweicloud.com/ralf/country:${{ github.sha }} cuntry
+        docker push swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:${{ github.sha }}
+
+        
+    - name: Deploy Random Country API
+      run: |
+        sed -i "s@swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:[a-z0-9]*@swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:${{ github.sha }}@g" cuntry/manifest/deployment.yaml
+
+
+    - name: Deploy to CCI
+      uses: huaweicloud/deploy-cci-action@v1.2.0
+      id: deploy-to-cci
+      with:
+        namespace: 'dev-namespace-ralf'
+        deployment: 'from-github'
+        #image: swr.cn-north-4.myhuaweicloud.com/demo/demo:v1.1
+        manifest: country/manifest/
