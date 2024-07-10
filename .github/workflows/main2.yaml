@@ -6,9 +6,8 @@ on:
       - main
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
-
     outputs:
       image: ${{ steps.build-image.outputs.image }}
 
@@ -39,6 +38,11 @@ jobs:
         docker push swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:${{ github.sha }}
         echo "::set-output name=image::swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:${{ github.sha }}"
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    
 
         
     # - name: Deploy Random Country API
@@ -46,11 +50,11 @@ jobs:
     #     sed -i "s@swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:[a-z0-9]*@swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:${{ github.sha }}@g" country/manifest/deployment.yaml
 
 
-    - name: Deploy to CCI
-      uses: huaweicloud/deploy-cci-action@v1.2.0
-      id: deploy-to-cci
-      with:
-        namespace: 'dev-namespace-ralf'
-        deployment: 'from-github'
-        image: ${{ needs.build.outputs.image }}
-        manifest: country/manifest/
+        - name: Deploy to CCI
+          uses: huaweicloud/deploy-cci-action@v1.2.0
+          id: deploy-to-cci
+          with:
+            namespace: 'dev-namespace-ralf'
+            deployment: 'from-github'
+            image: ${{ needs.build.outputs.image }}
+            manifest: country/manifest/
