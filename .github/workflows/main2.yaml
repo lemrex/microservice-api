@@ -31,7 +31,7 @@ jobs:
 
     - name: Build and push Cuntry image
       run: |
-        docker build -t swr.ap-southeast-3.myhuaweicloud.com/ralf/country:${{ github.sha }} country
+        docker build -t swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:${{ github.sha }} country
         docker push swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:${{ github.sha }}
 
         
