@@ -41,7 +41,7 @@ jobs:
             access_key_id: ${{ secrets.ACCESSKEY }} 
             secret_access_key: ${{ secrets.SECRETACCESSKEY }}
             region: 'ap-southeast-3'
-            project_id: '04eb02332a0025b92f00c0005dd31f24'
+            #project_id: '04eb02332a0025b92f00c0005dd31f24'
 
 
       - name: Deploy to CCI
