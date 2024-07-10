@@ -31,13 +31,13 @@ jobs:
 
     - name: Build and push Cuntry image
       run: |
-        docker build -t swr.ap-southeast-3.myhuaweicloud.com/ralf/country:${{ github.sha }} cuntry
+        docker build -t swr.ap-southeast-3.myhuaweicloud.com/ralf/country:${{ github.sha }} country
         docker push swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:${{ github.sha }}
 
         
     - name: Deploy Random Country API
       run: |
-        sed -i "s@swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:[a-z0-9]*@swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:${{ github.sha }}@g" cuntry/manifest/deployment.yaml
+        sed -i "s@swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:[a-z0-9]*@swr.ap-southeast-3.myhuaweicloud.com/ralf/cuntry:${{ github.sha }}@g" country/manifest/deployment.yaml
 
 
     - name: Deploy to CCI
