@@ -20,7 +20,7 @@ jobs:
         access-key-secret: ${{ secrets.SECRETACCESSKEY }}
         region: af-south-1      
 
-    - name: Build and push Country image
+    - name: Build and push Country images
       run: |
         docker build -t swr.af-south-1.myhuaweicloud.com/ralf/country:${{ github.sha }} /country
         docker push swr.af-south-1.myhuaweicloud.com/ralf/country:${{ github.sha }}
